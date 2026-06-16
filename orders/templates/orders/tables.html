@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tables Page</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <h1>Tables Page Working!</h1>
+
+    <hr>
+     {% for message in messages %}
+        <p class='text-green-600'> {{ message }}</p>
+        {% endfor %}
+</body>
+</html>
