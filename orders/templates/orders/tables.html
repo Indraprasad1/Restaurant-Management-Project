@@ -110,7 +110,7 @@
 
                 {% for table in tables %}
                 <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl border border-slate-200 p-6 transition-all duration-300 hover:-translate-y-2 animate-fade">
-
+                  
                     <div class="flex justify-between items-start">
                         <div>
                             <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition">
@@ -131,11 +131,14 @@
                         <button
                             class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300"
                         >
+                        <a href="{% url 'menu_view_url' table.id %}"> 
                             View Details
+                        </a>
                         </button>
                     </div>
-
+                
                 </div>
+           
                 {% endfor %}
 
             </div>
