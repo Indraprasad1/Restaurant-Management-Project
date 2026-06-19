@@ -45,11 +45,13 @@ def menu_view(request, table_id):
         messages.success(request, "Order created successfully")
                 
         return redirect("tables_view_url")
-    
-    
+     
     categories = Category.objects.all()
+    orders = Order.objects.filter(table_id = table_id).execlude(Order.ORDER_STATUS.BILLED).order_by("-created_at")
+
     
     return render(request, "orders/menu.html", {
         'categories':categories,
-        'table_id':table_id
+        'table_id':table_id,
+        'orders' : orders
     })

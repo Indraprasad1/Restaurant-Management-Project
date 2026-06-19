@@ -5,7 +5,10 @@ from .models import Table, Category, MenuItem, Order, OrderItem
 class TableAdmin(admin.ModelAdmin):
     list_display = ["name", "is_reserved"]
 
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ["table", "status", "created_at"]
+    
 admin.site.register(Category)
 admin.site.register(MenuItem)
-admin.site.register(Order)
 admin.site.register(OrderItem)
