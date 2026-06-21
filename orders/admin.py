@@ -5,6 +5,10 @@ from .models import Table, Category, MenuItem, Order, OrderItem, OrderHistory
 class TableAdmin(admin.ModelAdmin):
     list_display = ["name", "is_reserved"]
 
+@admin.register(MenuItem)
+class TableAdmin(admin.ModelAdmin):
+    list_display = ["name", "default_priority"]
+
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ["table", "status", "created_at"]
