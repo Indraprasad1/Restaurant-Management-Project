@@ -6,7 +6,7 @@ class TableAdmin(admin.ModelAdmin):
     list_display = ["name", "is_reserved"]
 
 @admin.register(MenuItem)
-class TableAdmin(admin.ModelAdmin):
+class MenuItemAdmin(admin.ModelAdmin):
     list_display = ["name", "default_priority"]
 
 @admin.register(Order)
@@ -14,6 +14,5 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ["table", "status", "created_at"]
     
 admin.site.register(Category)
-admin.site.register(MenuItem)
 admin.site.register(OrderItem)
 admin.site.register(OrderHistory)

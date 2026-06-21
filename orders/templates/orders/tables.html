@@ -84,7 +84,7 @@
 
                 <div>
                     <div class="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-2xl font-bold">
-                        {{ request.user.first_name|first }}
+                        <a href= {% url 'logout_view_url' %}>{{ request.user.first_name|first }} </a>
                     </div>
                 </div>
 
