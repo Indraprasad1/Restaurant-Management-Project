@@ -27,24 +27,41 @@ class MenuItem(models.Model):
 
 class Order(models.Model):
     class ORDER_STATUS(models.TextChoices):
-        PREPARING  = 'p', 'Preparing'
-        READY = 'r', 'Ready'
+        PENDING  = 'p', 'Pending'
+        PARTIALLY_SURVED = 'PS', 'Partially Served'
         SERVED = 's', 'Served'
         BILLED = 'b', 'Billed'
         
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     table = models.ForeignKey(Table, on_delete=models.PROTECT, related_name="orders")
-    status = models.CharField(max_length=2,default=ORDER_STATUS.PREPARING, choices=ORDER_STATUS)
+    status = models.CharField(max_length=2,default=ORDER_STATUS.PENDING, choices=ORDER_STATUS)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.table} -> {self.created_at}"
 
-class OrderItem(models.Model):
+class OrderItem(models.Model): 
+    class ITEM_STATUS(models.TextChoices):
+        PREPARING  = 'p', 'Preparing'
+        READY = 'r', 'Ready'
+        SERVED = 's', 'Served'
+        BILLED = 'b', 'Billed'  
     order = models.ForeignKey(Order, on_delete=models.PROTECT, related_name="items")
     menu_item = models.ForeignKey(MenuItem, on_delete=models.PROTECT, related_name="order_items")
     price = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField(default=1)
+    status = models.CharField(choices=ITEM_STATUS, max_length=2, default=ITEM_STATUS.PREPARING)
     
     def __str__(self):
         return f"{self.menu_item} x {self.quantity} qty"
+    
+class OrderHistory(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="histories")
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(choices=Order.ORDER_STATUS)
+    
+    class Meta:
+        verbose_name_plural = "Order Histories"
+    
+    def __str__(self):
+        return f"{self.order} -> {self.status}"
