@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Table, Category, MenuItem, Order, OrderItem, OrderHistory
+from .models import Table, Category, MenuItem, Order, OrderItem, OrderHistory,KitchenStation
+
 
 @admin.register(Table)
 class TableAdmin(admin.ModelAdmin):
@@ -7,7 +8,7 @@ class TableAdmin(admin.ModelAdmin):
 
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ["name", "default_priority"]
+    list_display = ["name", "default_priority","est Time", ]
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
@@ -16,3 +17,5 @@ class OrderAdmin(admin.ModelAdmin):
 admin.site.register(Category)
 admin.site.register(OrderItem)
 admin.site.register(OrderHistory)
+admin.site.register(KitchenStation)
+

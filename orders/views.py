@@ -65,4 +65,4 @@ def menu_view(request, table_id):
     
 @role_required([User.ROLE_CHOICES.KITCHEN])
 def kitchen_dashboard_view(request):
-    print("This is kitchen dashboard")
+    return render(request, "orders/kitchen_dashboard.html")
