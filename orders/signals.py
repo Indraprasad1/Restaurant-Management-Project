@@ -44,7 +44,7 @@ def handle_auto_order_status_update(sender, **kwargs):
         all_items = OrderItem.objects.filter(order=order_item.order)
         for item in all_items:
             if item.status != OrderItem.ITEM_STATUS.SERVED:
-                order_item.order.status = Order.ORDER_STATUS.PARTIALLY_SURVED
+                order_item.order.status = Order.ORDER_STATUS.PARTIALLY_SERVED
                 order_item.order.save()
                 break
         else:

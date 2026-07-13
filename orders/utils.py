@@ -68,7 +68,7 @@ def print_restaurant_receipt(order_data):
         p.text(
             f"Table: {order_data['table_name']} \n"
         )
-        p.text("Rainbow Galli, Biratnagar\n")
+        p.text("Chandragiri, Kathmandu\n")
         p.text("Tel: 023-398479\n")
         p.text("-" * 32 + "\n")
 
