@@ -138,7 +138,7 @@ def kitchen_item_view(request, pk):
         station_code = request.session['station_code']
         url = reverse("kitchen_dashboard_view_url")
         params = {
-            'station_code':station_code
+            'station_code': item.menu_item.station.code
         }
         del request.session['station_code']
         
