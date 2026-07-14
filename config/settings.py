@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,3 +117,19 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30  # 1 month in seconds
 
 MEDIA_ROOT = "media/"
 MEDIA_URL = "media/"
+
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "ChaiAdda Admin",
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "ChaiAdda",
+
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "ChaiAdda",
+
+     # Copyright on the footer
+    "copyright": "ChaiAdda Pvt. Ltd.",
+    
+    "search_model": ["orders.MenuItem"],
+}
