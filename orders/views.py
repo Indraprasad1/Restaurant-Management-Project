@@ -12,7 +12,8 @@ from django.http import JsonResponse
 from .utils import print_restaurant_receipt
 import pprint
 import decimal
-
+from django.views.decorators.cache import cache_page
+import time
 
 @role_required([User.ROLE_CHOICES.WAITER])
 def tables_view(request):
@@ -292,32 +293,9 @@ def billing_paid_view(request, table_id):
         # messages.success(request, f"Billing for {orders_count} orders completed successfully.")
         
         return redirect("tables_for_billing_url")
-    
 
-def trigger_print(request):
-    sample_order = {
-        "order_id": 1024,
-        "table_no": 5,
-        "items": [
-            {
-                "name": "Classic Burger",
-                "price": 12.50,
-                "qty": 2,
-            },
-            {
-                "name": "Cheese Fries",
-                "price": 4.50,
-                "qty": 1,
-            },
-            {
-                "name": "Coke Zero",
-                "price": 2.00,
-                "qty": 2,
-            },
-        ],
-        "total": 31.50,
-    }
-    if print_restaurant_receipt(sample_order):
-        return JsonResponse({"status": "success", "message": "Sent to emulator"})
-    else:
-        return JsonResponse({"status": "error", "message": "Printer unavailable"}, status=503)
+@cache_page(60 * 15)
+def home_view(request):
+    print("Raw view, waiting...")
+    time.sleep(5)
+    return render(request, "orders/home.html")

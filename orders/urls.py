@@ -17,5 +17,5 @@ urlpatterns = [
     path("billing/<table_id>/paid/", views.billing_paid_view, name="billing_paid_view_url"),
     path("billing/<table_id>/", views.billing_view, name="billing_view_url"),
     
-    path("print/", views.trigger_print, name="print")
+    # path("print/", views.trigger_print, name="print")
 ]
